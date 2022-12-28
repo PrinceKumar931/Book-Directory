@@ -1,0 +1,65 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	border: 1px solid black;
+}
+
+main{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+
+.operations,form{
+	padding: 2rem;
+	text-align: center;
+}
+
+#main-heading{
+	font-size: 5rem;
+}
+
+.input-container{
+	padding: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.input-container input{
+	padding: .5rem;
+	width: 300px;
+	font-size: 1rem;
+}
+label{
+	padding: .5rem;
+	font-size: 1.5rem;
+}
+
+
+.operations{
+	display: grid;
+	grid-template-columns: repeat(2,1fr);
+	gap: 2rem;
+}
+
+#success-text{
+	padding: .5rem;
+	font-size: 1.5rem;
+}
+
+.btn{
+	padding: 1rem 2rem;
+	font-size: x-large;
+	font-weight: bold;
+	border-radius: 10px;
+	text-decoration: none;
+	color: black;
+}
+
+.btn:hover{
+	cursor: pointer;
+}

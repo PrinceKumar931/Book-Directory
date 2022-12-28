@@ -3,19 +3,25 @@ const router = express.Router();
 
 const {
 	addToAll,
+	addToCompleted,
+	addToOnging,
 	addToFavourites,
 	getAll,
 	getFavourites,
 	getOngoing,
 	getCompleted,
-	deleteFromAll } = require('../controllers/controllers.js')
+	deleteFromAll,
+	deleteFromFavourites} = require('../controllers/controllers.js');
+const { AllBooks } = require('../models/schema.js');
 
 
-router.route('/').get(getAll).post(addToAll).patch(addToFavourites);
-router.route('/favourites').get(getFavourites);
-router.route('/ongoing').get(getOngoing);
-router.route('/completed').get(getCompleted);
-router.route('/:id').delete(deleteFromAll);
+router.route('/').post(addToAll);   //done
+router.route('/all').get(getAll).patch(addToFavourites);  // done
+router.route('/favourites').get(getFavourites);   //done
+router.route('/favourites/:id').delete(deleteFromFavourites); // done
+router.route('/ongoing').get(getOngoing).patch(addToOnging);  //done
+router.route('/completed').get(getCompleted).patch(addToCompleted); //done
+router.route('/:id').delete(deleteFromAll); // done
 // router.route('/home/').get(getFavourites).get(getOngoing).get(getCompleted);
 
 // app.get('/api/v1/home', (req, res) => {

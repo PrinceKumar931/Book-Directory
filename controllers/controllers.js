@@ -21,8 +21,8 @@ const getAll = async (req, res) => {
 
 const addToAll = async (req, res) => {
     try {
-        const book = await AllBooks.create(req.body);
-        res.status(201).json({ book });
+        const books = await AllBooks.create(req.body);
+        res.status(201).json({ books });
     } catch (error) {
         res.status(500).json({ error });
     }
@@ -31,8 +31,8 @@ const addToAll = async (req, res) => {
 // * ADDING BOOK TO THE FAVOURITES DIRECTORY
 const addToFavourites = async (req, res) => {
     try {
-        const book = await Favourites.create(req.body);
-        res.status(201).json({ book });
+        const books = await Favourites.create(req.body);
+        res.status(201).json({ books });
     } catch (error) {
         res.status(500).json({ msg: error });
     }
@@ -48,6 +48,29 @@ const getFavourites = async (req, res) => {
     }
 };
 
+const deleteFromFavourites = async (req,res) => {
+    try {
+        const { id: bookID } = req.params;
+        const books = await Favourites.findOneAndDelete({ _id: bookID });
+        if (!books) {
+            return res.status(200).send(`No book with ID : ${bookID}`);
+        }
+        res.status(200).json({ books });
+    } catch (error) {
+        res.status(500).json({ msg: error });
+    }
+}
+
+const addToOnging = async (req, res) => {
+    try {
+        const books = await Ongoing.create(req.body);
+        res.status(200).json({ books });
+        
+    } catch (error) {
+        res.status(500).json({ msg: error });
+    }
+}
+
 // * GETTING ALL THE BOOKS IN ONGOING DIRECTORY
 const getOngoing = async (req, res) => {
     try {
@@ -57,6 +80,16 @@ const getOngoing = async (req, res) => {
         res.status(500).json({ msg: error });
     }
 };
+
+const addToCompleted = async (req,res) => {
+    try {
+        const books = await Completed.create(req.body);
+        res.status(200).json({ books });
+    } catch (error) {
+        res.status(500).json({ msg: error });
+    }
+    
+}
 
 // * GETTING ALL THE BOOKS IN COMPLETED DIRECTORY
 const getCompleted = async (req, res) => {
@@ -73,11 +106,11 @@ const getCompleted = async (req, res) => {
 const deleteFromAll = async (req, res) => {
     try {
         const { id: bookID } = req.params;
-        const book = await AllBooks.findOneAndDelete({ _id: bookID });
-        if (!book) {
+        const books = await AllBooks.findOneAndDelete({ _id: bookID });
+        if (!books) {
             return res.status(200).send(`No book with ID : ${bookID}`);
         }
-        res.status(200).json({ book });
+        res.status(200).json({ books });
     } catch (error) {
         res.status(500).json({ msg: error });
     }
@@ -85,10 +118,13 @@ const deleteFromAll = async (req, res) => {
 
 module.exports = {
     addToAll,
+    addToCompleted,
+    addToOnging,
     addToFavourites,
     getAll,
     getFavourites,
     getOngoing,
     getCompleted,
-    deleteFromAll
+    deleteFromAll,
+    deleteFromFavourites
 };

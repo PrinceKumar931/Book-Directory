@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="index.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+		integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+	<script type="module" src="index.js" defer></script>
+	<title>Book-Directory</title>
+</head>
+
+<body>
+	<main>
+		<form id="form">
+			<h1 id="main-heading">Book Directory</h1>
+			<div class="input-container">
+				<label for="addBook">Book Name :
+					<input id="addBook" type="text" placeholder="Winning Friends And Influencing People">
+				</label>
+			</div>
+			<div class="input-container">
+				<label for="addAuthor">Author Name :
+					<input type="text" id="addAuthor" placeholder="Kriti Khanna">
+				</label>
+			</div>
+			
+			<input type="submit" class="btn add-btn" value="submit">
+			<p id="success-text">Book Added</p>
+		</form>
+		<section class="operations">
+			<a class="btn all-books" href="all.html">All Books</a>
+			<a class="btn favourite-books" href="favourites.html">Favourites</a>
+			<a class="btn ongoing-books" href="ongoing.html">Ongoing</a>
+			<a class="btn completed-books" href="completed.html">Completed</a>
+		</section>
+	</main>
+</body>
+
+</html>
