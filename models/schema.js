@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const BookDirectorySchema =new mongoose.Schema({
+
 	name: {
 		type: String,
 		required: [true, 'must provide name of the book'],

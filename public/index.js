@@ -1,6 +1,8 @@
 const form = document.querySelector('#form');
 
 
+const success_text = document.getElementById('success-text');
+success_text.style.display = 'none';
 
 
 form.addEventListener('submit', async (e) => {
@@ -9,11 +11,18 @@ form.addEventListener('submit', async (e) => {
 	const authorName = document.getElementById('addAuthor').value;
 	console.log('working');
 	try {
-		await axios.post('/api/v1/home', { name,authorName })
+		console.log('still working');
+		await axios.post('/api/v1/home', { name, authorName });
 		console.log('working');
+		success_text.style.display = 'block';
 	} catch (error) {
 		console.log(error);
 	}
+
+	
+	setTimeout(() => {
+		success_text.style.display = 'none';
+	}, 3000);
 })
 
 
