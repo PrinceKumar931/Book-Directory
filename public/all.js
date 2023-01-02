@@ -13,7 +13,7 @@ const showAllBooks = async () => {
 			books_div.innerHTML = '<h5 class="empty-list">No Books in your Directory</h5>'
 			return
 		}
-		const allBooks = (books.map( async (book) => {
+		const allBooks = books.map(async (book) => {
 			const { name, authorName, _id: bookID } = book;
 			const { data: { books: ongoingBooks } } = await axios.get(`api/v1/home/ongoing/${name}`);
 			console.log(book);
@@ -24,7 +24,7 @@ const showAllBooks = async () => {
 				readingStatus = 'Ongoing'
 			}
 
-			console.log(readingStatus);
+			// console.log(readingStatus);
 			return (
 				`<div class="single-book">
 				<div class="name-author-div">
@@ -42,20 +42,53 @@ const showAllBooks = async () => {
 			</div>
 			</div>`
 			);
-		}).join(''));
+		});
+        // const allBooks= Promise.map(books, (book) => {
+		// 		const { name, authorName, _id: bookID } = book;
+		// 		// const { data: { books: ongoingBooks } } = await axios.get(`api/v1/home/ongoing/${name}`);
+		// 		console.log(book);
+		// 		// console.log(ongoingBooks);
+	
+		// 		var readingStatus = 'Start Reading';
+		// 		// if (ongoingBooks.length !== 0) {
+		// 		// 	readingStatus = 'Ongoing'
+		// 		// }
+	
+		// 		// console.log(readingStatus);
+		// 		return (
+		// 			`<div class="single-book">
+		// 			<div class="name-author-div">
+		// 			<h4>${name}</h4>
+		// 		<p class="author-name">${authorName}</p>
+		// 		</div>
+				
+		// 		<div class="right-div">
+		// 		<div class="icon-div">
+		// 		<a class="favourite-btn" data-id="${bookID}"><img src="./icons/fav.svg" alt="star-icon"></a>
+		// 		<a class="delete-btn" data-id="${bookID}"><img src="./icons/dlt.svg" alt="bin-icon"></a>
+		// 		</div>
+		
+		// 		<button class="btn reading-status" data-id="${bookID}">Start Reading</button>
+		// 		</div>
+		// 		</div>`
+		// 		);
+		// 	}).then((res)=>{
+		// 		console.log(res);
+		// 		return res.join('');
+		// 	});
 
-		books_div.innerHTML = allBooks;
+		books_div.innerHTML =  await Promise.all(allBooks).then((res)=>{
+			return res.join('');
+		});
 		console.log(`here is the book div ${books_div}`);
 
 	} catch (error) {
 		console.log(error);
 	}
-	console.log(allBooks);
 }
 
 
-
-showAllBooks();
+ showAllBooks();
 
 books_div.addEventListener('click', async (e) => {
 	const el = e.target
