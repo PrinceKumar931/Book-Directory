@@ -22,9 +22,10 @@ router.route('/all').get(getAll);  // done
 router.route('/favourites').get(getFavourites);   //done
 router.route('/favourites/:id').delete(deleteFromFavourites); // done
 router.route('/ongoing').get(getOngoing);  //done
-router.route('/ongoing/:id').delete(deleteFromOngoing).patch(addToOnging).get(findFromOngoing); // done
-router.route('/completed').get(getCompleted).patch(addToCompleted); //done
-router.route('/completed/:id').delete(deleteFromCompleted);
+router.route('/ongoing/:id').delete(deleteFromOngoing).patch(addToOnging);// done
+router.route('/ongoing/:bookName').get(findFromOngoing);
+router.route('/completed').get(getCompleted); //done
+router.route('/completed/:id').delete(deleteFromCompleted).patch(addToCompleted);
 router.route('/all/:id').delete(deleteFromAll).patch(addToFavourites);// done
 
 // router.route('/home/').get(getFavourites).get(getOngoing).get(getCompleted);

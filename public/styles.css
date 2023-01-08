@@ -56,13 +56,14 @@ main {
     margin: 0 .8rem;
 }
 
-.btn {
+.btn,.countdown {
     padding: .5rem 1rem;
     font-size: x-large;
     font-weight: bold;
     border-radius: 10px;
 	border-style: none;
     color: black;
+    background-color:rgb(251, 176, 84);
 }
 
 .right-div{

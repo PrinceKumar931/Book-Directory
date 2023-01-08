@@ -9,14 +9,15 @@ form.addEventListener('submit', async (e) => {
 	e.preventDefault()
 	const name = document.getElementById('addBook').value;
 	const authorName = document.getElementById('addAuthor').value;
-	console.log('working');
+	console.log('working - 1');
 	try {
-		console.log('still working');
+		console.log('working - 2');
+		console.log(name,authorName);
 		await axios.post('/api/v1/home', { name, authorName });
-		console.log('working');
+		console.log('working - 3');
 		success_text.style.display = 'block';
 	} catch (error) {
-		console.log(error);
+		console.log({msg:error});
 	}
 
 	
