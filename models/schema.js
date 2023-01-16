@@ -38,6 +38,10 @@ const OngoingBooksSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 			trim: true
+		},
+		targetDate: {
+			type: Date,
+			default: null
 		}
 	},{timestamps:true,})
 

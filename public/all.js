@@ -1,6 +1,7 @@
 
 const books_div = document.querySelector('.root');
 
+const target = -1;
 
 const showAllBooks = async () => {
 	console.log('running');
@@ -36,7 +37,7 @@ const showAllBooks = async () => {
 			<a class="delete-btn" data-id="${bookID}"><img src="./icons/dlt.svg" alt="bin-icon"></a>
 			</div>
 	
-			<button class="btn reading-status" data-id="${bookID}">${reading}</button>
+			<a ><button class="btn reading-status" data-id="${bookID}">${reading}</button></a>
 			</div>
 			</div>`
 			);
@@ -117,7 +118,6 @@ books_div.addEventListener('click', async (e) => {
 	}
 
 	if (el.classList.contains('reading-status')) {
-		// const target=prompt('enter the number of days to compelte the book.');
 		console.log(el.classList);
 		const id = el.dataset.id;
 		console.log(id);
@@ -132,17 +132,6 @@ books_div.addEventListener('click', async (e) => {
 }
 );
 
-// function generateCountdown(targetDate) {
-//     console.log(targetDate);
-//     var interval=setInterval(() => {
-//         var now = new Date().getTime();
-//         var distance= targetDate-now;
-//         console.log(distance);
 
-//         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-//         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-//         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-//         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-//     }, 1000);
-// }
+

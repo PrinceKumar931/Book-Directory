@@ -122,16 +122,53 @@ const addToOnging = async (req, res) => {
 const findFromOngoing = async (req, res) => {
     try {
         console.log('-----------finding from ongoing----------');
+
+
         const { bookName } = req.params;
         console.log(bookName);
+
+
         const books = await Ongoing.find({ bookName });
         console.log(books);
+
+
         res.status(200).json({ books });
+
+
         console.log('------------Found From Ongoing-----------');
     } catch (error) {
+
         res.status(500).json({ msg: error });
+
     }
 }
+
+
+
+// * ADDING TARGET DATE
+
+const addTargetDate = async (req,res) => {
+    try {
+        console.log('---------- adding target date ------------');
+
+        const { bookName } = req.params;
+        var { targetDate } = req.body;
+        
+        targetDate = new Date(targetDate);
+        console.log(`book Name: ${bookName}  ----  targetDate: ${targetDate}`);
+
+        await Ongoing.findOneAndUpdate({name:bookName},{targetDate});
+
+        res.status(200).json({ targetDate});
+
+        console.log('---------- added target date ------------');
+    } catch (error) {
+        console.log({msg:error});
+    }
+    
+}
+
+
 
 
 // * DELETING FROM ONGOING DIRECTORY
@@ -229,6 +266,9 @@ const deleteFromAll = async (req, res) => {
 
 
 
+
+
+
 module.exports = {
     addToAll,
     addToCompleted,
@@ -242,5 +282,6 @@ module.exports = {
     deleteFromFavourites,
     deleteFromOngoing,
     deleteFromCompleted,
-    findFromOngoing
+    findFromOngoing,
+    addTargetDate
 };

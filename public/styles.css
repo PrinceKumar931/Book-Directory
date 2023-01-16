@@ -24,7 +24,7 @@ main {
     justify-content: center;
     /* align-items: center; */
     gap: 1rem;
-    max-width: 700px;
+    max-width: 900px;
     width: 100%;
     text-align: left;
     margin-top: 3rem;
@@ -56,7 +56,7 @@ main {
     margin: 0 .8rem;
 }
 
-.btn,.countdown {
+.btn {
     padding: .5rem 1rem;
     font-size: x-large;
     font-weight: bold;
@@ -64,6 +64,11 @@ main {
 	border-style: none;
     color: black;
     background-color:rgb(251, 176, 84);
+    margin: .5rem;
+}
+
+.set-target:hover{
+    cursor: pointer;
 }
 
 .right-div{

@@ -14,7 +14,8 @@ const {
 	deleteFromFavourites,
 	deleteFromOngoing,
 	deleteFromCompleted,
-	findFromOngoing } = require('../controllers/controllers.js');
+	findFromOngoing,
+	addTargetDate} = require('../controllers/controllers.js');
 
 
 router.route('/').post(addToAll);   //done
@@ -24,6 +25,7 @@ router.route('/favourites/:id').delete(deleteFromFavourites); // done
 router.route('/ongoing').get(getOngoing);  //done
 router.route('/ongoing/:id').delete(deleteFromOngoing).patch(addToOnging);// done
 router.route('/ongoing/:bookName').get(findFromOngoing);
+router.route('/ongoing/edit/:bookName').patch(addTargetDate);
 router.route('/completed').get(getCompleted); //done
 router.route('/completed/:id').delete(deleteFromCompleted).patch(addToCompleted);
 router.route('/all/:id').delete(deleteFromAll).patch(addToFavourites);// done
