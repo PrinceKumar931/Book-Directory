@@ -25,7 +25,8 @@ router.route('/ongoing').get(getOngoing);
 router.route('/ongoing/:id').delete(deleteFromOngoing).patch(addToOnging);
 router.route('/completed').get(getCompleted); 
 router.route('/completed/:id').delete(deleteFromCompleted).patch(addToCompleted);
-router.route('/all/:id').delete(deleteFromAll).patch(addToFavourites);
+router.route('/all/:id').delete(deleteFromAll);
+router.route('/all/:id/:favStatus').patch(addToFavourites);
 
 
 module.exports = router;

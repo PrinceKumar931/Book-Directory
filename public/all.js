@@ -38,7 +38,7 @@ const showAllBooks = async () => {
 							<a class="favourite-btn" data-id="${bookID}" data-favStatus="${favourites}"><img src="./assets/icons/heart-regular.svg"></a>
 							<a class="delete-btn" data-id="${bookID}"><img src="./assets/icons/trash-solid.svg"></a>
 						</div>
-							<a><button class="btn reading-status" data-id="${bookID}">${reading}</button></a>
+							<a><button class="btn reading-status hover" data-id="${bookID}">${reading}</button></a>
 					</div>
 				</div>`
 			);
@@ -105,9 +105,11 @@ books_div.addEventListener('click', async (e) => {
 	// * API CALL FOR ADDING BOOK TO FAVOURITES DIRECTORY
 	if (el.parentElement.classList.contains('favourite-btn')) {
 		const id = el.parentElement.dataset.id;
+		const favStat = el.parentElement.dataset.favstatus;
+		console.log(favStat);
 		console.log(id);
 		try {
-			await axios.patch(`api/v1/home/all/${id}`);
+			await axios.patch(`api/v1/home/all/${id}/${favStat}`);
 			showAllBooks();
 		} catch (error) {
 			console.log(error)

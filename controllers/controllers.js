@@ -72,13 +72,21 @@ const addToFavourites = asyncWrapper(async (req, res) => {
     console.log('------------Adding To Favourites---------------');
 
     console.log(req.params);
-    const { id: bookID } = req.params;
+    const { id: bookID, favStatus } = req.params;
+    console.log(typeof favStatus);
     console.log(bookID);
     const book = await AllBooks.findById(bookID);
     const { name, authorName } = book;
     console.log(`Book Name ---> ${name} AuthorName---> ${authorName}`);
-    const books = await Favourites.create({ name, authorName });
-    await AllBooks.findByIdAndUpdate(bookID, { favourites: true });
+    var books = null;
+    if (favStatus === 'false') {
+        books = await Favourites.create({ name, authorName });
+        await AllBooks.findByIdAndUpdate(bookID, { favourites: true });
+    }
+    if(favStatus==='true') {
+        books = await Favourites.findOneAndDelete({ name });
+        await AllBooks.findByIdAndUpdate(bookID, { favourites: false });
+    }
     res.status(201).json({ books });
 
     console.log('------------Added To Favourites---------------');

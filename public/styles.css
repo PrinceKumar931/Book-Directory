@@ -95,11 +95,9 @@ main {
     margin-left: 1rem;
 }
 
-.reading-status:hover {
-    background-color: black
+.hover:hover {
+    background-color: black;
 }
-
-
 
 .reading-status-disabled {
     background-color: rgb(135, 135, 135);
