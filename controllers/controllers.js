@@ -1,5 +1,5 @@
 const asyncWrapper = require('../middleware/async');
-
+const { createCustomError } = require("../errors/custom-error");
 const {
     AllBooks,
     Favourites,
@@ -49,7 +49,7 @@ const getFavourites = asyncWrapper(async (req, res) => {
 
 });
 
-const deleteFromFavourites = asyncWrapper(async (req, res) => {
+const deleteFromFavourites = asyncWrapper(async (req, res,next) => {
 
     console.log('------------Deleting From Favourites-------------');
 
@@ -57,7 +57,7 @@ const deleteFromFavourites = asyncWrapper(async (req, res) => {
     console.log(name);
     const books = await Favourites.findOneAndDelete({ _id: bookID });
     if (!books) {
-        return res.status(200).send(`No book with ID : ${bookID}`);
+        return next(createCustomError(`No book with id : ${bookID}`,404));
     }
     await AllBooks.findOneAndUpdate(name , { favourites: false });
     res.status(200).json({ books });
@@ -71,13 +71,10 @@ const addToFavourites = asyncWrapper(async (req, res) => {
 
     console.log('------------Adding To Favourites---------------');
 
-    console.log(req.params);
     const { id: bookID, favStatus } = req.params;
-    console.log(typeof favStatus);
-    console.log(bookID);
+    
     const book = await AllBooks.findById(bookID);
     const { name, authorName } = book;
-    console.log(`Book Name ---> ${name} AuthorName---> ${authorName}`);
     var books = null;
     if (favStatus === 'false') {
         books = await Favourites.create({ name, authorName });
@@ -115,9 +112,7 @@ const addToOnging = asyncWrapper(async (req, res) => {
     console.log('----------Adding to Ongoing----------');
 
     const { id: bookID } = req.params;
-    console.log(bookID);
     const book = await AllBooks.findByIdAndUpdate(bookID, { readingStatus: 1 });
-    console.log(book);
     const { name, authorName } = book;
     const books = await Ongoing.create({ name, authorName });
     res.status(200).json({ books });
@@ -135,10 +130,8 @@ const deleteFromOngoing = asyncWrapper(async (req, res) => {
     const { id: bookID } = req.params;
     console.log(bookID);
     const { name } = await Ongoing.findById({ _id: bookID });
-    console.log(name);
-    const updated = await AllBooks.findOneAndUpdate({ name }, { readingStatus: 0 });
+    await AllBooks.findOneAndUpdate({ name }, { readingStatus: 0 });
     const books = await Ongoing.findOneAndDelete({ bookID });
-    console.log(updated);
     res.status(200).json({ books });
 
     console.log('-------------Deleted------------------');
@@ -154,9 +147,7 @@ const addToCompleted = asyncWrapper(async (req, res) => {
     console.log('------------Adding To Completed-------------');
     
     const { id: bookID } = req.params;
-    console.log(bookID);
     const { name, authorName } = await Ongoing.findById(bookID);
-    console.log(`${name} <------> ${authorName}`);
     const books = await Completed.create({ name, authorName });
     await Ongoing.findOneAndDelete({ name });
     await AllBooks.findOneAndUpdate({ name }, { readingStatus: 2 });
@@ -194,7 +185,7 @@ const deleteFromCompleted = asyncWrapper(async (req, res) => {
 
 // * DELETING A BOOK FROM ALL DIRECTORY
 
-const deleteFromAll = asyncWrapper(async (req, res) => {
+const deleteFromAll = asyncWrapper(async (req, res,next) => {
 
     console.log('--------------Deleting From All Books----------------');
 
@@ -206,7 +197,7 @@ const deleteFromAll = asyncWrapper(async (req, res) => {
     await Completed.findOneAndDelete({ name });
     const books = await AllBooks.findOneAndDelete({ _id: bookID });
     if (!books) {
-        return res.status(200).send(`No book with ID : ${bookID}`);
+        return next(createCustomError(`No book with ID : ${bookID}`,404));
     }
     res.status(200).json({ books });
     

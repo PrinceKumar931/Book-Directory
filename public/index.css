@@ -8,8 +8,6 @@
     font-family: "Rubik", sans-serif;
 }
 
-
-
 main {
     display: flex;
     flex-direction: column;
@@ -18,11 +16,11 @@ main {
     height: 100vh;
 }
 
-form,.btn {
-  border-radius: 14px;
-background: #ffffff;
-box-shadow:  8px 8px 35px #9c9c9c,
-             -8px -8px 35px #ffffff;
+form,
+.btn {
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 8px 8px 35px #9c9c9c, -8px -8px 35px #ffffff;
 }
 
 .operations,
@@ -95,4 +93,49 @@ label {
 img {
     width: 30px;
     margin-left: 1rem;
+}
+
+@media screen and (max-width: 675px) {
+    #main-heading {
+        font-size: 3rem;
+    }
+
+    form {
+        padding: 1rem 0.5rem;
+    }
+}
+
+@media screen and (max-width: 391px) {
+    .operations {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+    }
+
+    #main-heading {
+        font-size: 1.5rem;
+    }
+
+    label {
+        font-size: 1.2rem;
+    }
+    .input-container input {
+        padding: 0.5rem;
+        width: 200px;
+        font-size: 0.8rem;
+    }
+
+    .btn {
+        font-size: medium;
+        padding: 0.5rem;
+    }
+
+    .operations {
+        padding: 1rem;
+        gap: 0.5rem;
+    }
+
+    .input-container {
+        padding: 0;
+    }
 }
