@@ -1,5 +1,0 @@
-index.js
-routes
-controllers
-database
-env

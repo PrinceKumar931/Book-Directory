@@ -4,6 +4,7 @@ require('dotenv').config();
 const connectDB  = require('./DB/connect')
 const routes = require('./routes/route');
 
+
 app.use(express.static('./public'));
 app.use(express.json());
 

@@ -1,65 +1,98 @@
-*{
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
-	border: 1px solid black;
-}
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
 
-main{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
-}
-
-.operations,form{
-	padding: 2rem;
-	text-align: center;
-}
-
-#main-heading{
-	font-size: 5rem;
-}
-
-.input-container{
-	padding: 1rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.input-container input{
-	padding: .5rem;
-	width: 300px;
-	font-size: 1rem;
-}
-label{
-	padding: .5rem;
-	font-size: 1.5rem;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    /* border: 1px solid black; */
+    font-family: "Rubik", sans-serif;
 }
 
 
-.operations{
-	display: grid;
-	grid-template-columns: repeat(2,1fr);
-	gap: 2rem;
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
-#success-text{
-	padding: .5rem;
-	font-size: 1.5rem;
+form,.btn {
+  border-radius: 14px;
+background: #ffffff;
+box-shadow:  8px 8px 35px #9c9c9c,
+             -8px -8px 35px #ffffff;
 }
 
-.btn{
-	padding: 1rem 2rem;
-	font-size: x-large;
-	font-weight: bold;
-	border-radius: 10px;
-	text-decoration: none;
-	color: black;
+.operations,
+form {
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.btn:hover{
-	cursor: pointer;
+#main-heading {
+    font-size: 5rem;
+}
+
+.input-container {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-container input {
+    padding: 0.5rem;
+    width: 300px;
+    font-size: 1.2rem;
+}
+label {
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.operations {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+#success-text {
+    padding: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    font-size: x-large;
+    font-weight: bold;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    border-style: none;
+}
+
+.add-btn {
+    margin-top: 1rem;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+img {
+    width: 30px;
+    margin-left: 1rem;
 }

@@ -1,0 +1,5 @@
+1. make the favourite button toggleable
+2. no hover effects for favourites , ongoings and completed
+3. no hover effect once the book is completed and in ongoing state.
+4. add hover effect on main buttons.
+5. change background color of input fields when active.
